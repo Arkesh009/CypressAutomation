@@ -14,12 +14,12 @@ describe('My first Test Suite', function()
         cy.get('.products').find('.product').eq(2).contains('ADD TO CART').click();
 
         cy.get('.products').find('.product').each(($e1, index, $list) => {
-            const textVeg=$el.find('h4.product-name').text()
+            const textVeg=$e1.find('h4.product-name').text()
             if(textVeg.includes('Cashews')){
-                $e1.find('button').click();
+                cy.wrap($e1).find('button').click();
             }
         });
-        
+
     });
 
     // it('My secondtest case', function(){
