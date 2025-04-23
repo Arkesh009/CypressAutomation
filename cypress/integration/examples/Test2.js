@@ -26,7 +26,6 @@ describe('My Second Test Suite', function () {
 
 
     });
-
     
 }
 );
