@@ -1,4 +1,4 @@
-/// <reference types="Cypress" />
+/// <reference types="cypress" />
 // Cypress IntelliSense support for autocompletion and documentation
 
 // Test suite for handling child window operations

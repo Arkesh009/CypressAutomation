@@ -1,4 +1,4 @@
-/// <reference types="Cypress" />
+/// <reference types="cypress" />
 
 // Test suite for handling web tables
 describe('My 6th test suite', () => {

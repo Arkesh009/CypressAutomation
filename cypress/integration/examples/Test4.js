@@ -1,4 +1,4 @@
-/// <reference types="Cypress"/>
+/// <reference types="cypress" />
 
 // Test suite for handling alerts and confirmation pop-ups
 describe('My fourth test suite', function(){
