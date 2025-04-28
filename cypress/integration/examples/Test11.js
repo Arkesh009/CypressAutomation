@@ -2,13 +2,22 @@
 
 // Test suite for E2E testing of an e-commerce application
 describe('E2E Ecommerce Test', () => {
-    it('Order submission', () => {
+
+    // runs only once before any test in the block
+    before(function(){
+        cy.fixture('example').then(function(data){
+            this.data = data
+        })
+    })
+
+    it('Order submission', function() {
+
         // Visit the login page
         cy.visit("https://rahulshettyacademy.com/loginpagePractise/#")
 
         // Enter the username and password
-        cy.get('#username').type('rahulshettyacademy') // Input username
-        cy.get('#password').type('learning') // Input password
+        cy.get('#username').type(this.data.username) // Input username
+        cy.get('#password').type(this.data.password) // Input password
 
         // Click the "Sign In" button
         cy.contains('Sign In').click()
@@ -20,7 +29,7 @@ describe('E2E Ecommerce Test', () => {
         cy.get('app-card').should('have.length', 4)
 
         // Define the product name to be added to the cart
-        const productName = "Nokia Edge"
+        const productName = this.data.productName
 
         // Find the product card containing the specified product name
         cy.get('app-card').filter(`:contains("${productName}")`).then($element => {
