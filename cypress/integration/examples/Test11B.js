@@ -1,5 +1,5 @@
 /// <reference types="cypress"/>
-
+import HomePage from '../../support/pageObjects/HomePage'
 // Test suite for E2E testing of an e-commerce application
 describe('E2E Ecommerce Test', () => {
 
@@ -7,44 +7,34 @@ describe('E2E Ecommerce Test', () => {
     before(function(){
         cy.fixture('example').then(function(data){
             this.data = data
+            this.homepage = new HomePage()
         })
     })
 
     it('Order submission', function() {
 
-        // Visit the login page
-        cy.visit("https://rahulshettyacademy.com/loginpagePractise/#")
-
-        // Enter the username and password
-        cy.get('#username').type(this.data.username) // Input username
-        cy.get('#password').type(this.data.password) // Input password
-
-        // Click the "Sign In" button
-        cy.contains('Sign In').click()
-
-        // Verify that the "Shop Name" heading is visible after login
-        cy.contains('Shop Name').should('be.visible')
-
-        // Verify that there are exactly 4 product cards displayed
-        cy.get('app-card').should('have.length', 4)
-
         // Define the product name to be added to the cart
         const productName = this.data.productName
 
-        // Find the product card containing the specified product name
-        cy.get('app-card').filter(`:contains("${productName}")`).then($element => {
-            // Ensure that exactly one product card matches the specified name
-            cy.wrap($element).should('have.length', 1)
+        // Visit the login page
+        this.homepage.goTo("https://rahulshettyacademy.com/loginpagePractise/#")
+        // Enter the username and password
+        const productPage = this.homepage.login(this.data.username, this.data.password)
 
-            // Click the "Add" button on the matching product card
-            cy.wrap($element).contains('button', 'Add').click()
-        })
+        // Verify that the "Shop Name" heading is visible after login
+        productPage.pageValidation()
+
+        // Verify that there are exactly 4 product cards displayed
+        productPage.verifyCardLimit()
+
+        // Find the product card containing the specified product name
+        productPage.selectProduct(productName)
 
         // Add the first product card to the cart
-        cy.get('app-card').eq(0).contains('button', 'Add').click()
+        productPage.selectFirstProduct()
 
         // Click the "Checkout" link to proceed to the cart
-        cy.contains('a', 'Checkout').click()
+        const cartPage = productPage.goToCart()
 
         // Initialize a variable to store the total sum of product prices
         let sum = 0
