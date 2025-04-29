@@ -23,9 +23,9 @@ describe('E2E Ecommerce Test', () => {
 
         // Verify that the "Shop Name" heading is visible after login
         productPage.pageValidation()
-
+        cy.pause();
         // Verify that there are exactly 4 product cards displayed
-        productPage.verifyCardLimit()
+        productPage.verifyCardLimit().should('have.length', 4)
 
         // Find the product card containing the specified product name
         productPage.selectProduct(productName)
@@ -35,36 +35,23 @@ describe('E2E Ecommerce Test', () => {
 
         // Click the "Checkout" link to proceed to the cart
         const cartPage = productPage.goToCart()
-
-        // Initialize a variable to store the total sum of product prices
-        let sum = 0
-
-        // Iterate through all product prices in the cart and calculate the total sum
-        cy.get('tr td:nth-child(4) strong').each($el => {
-            const amount = Number($el.text().split(" ")[1].trim()) // Extract and convert the price to a number
-            sum += amount // Add the price to the total sum
-            expect(sum).to.be.lessThan(200000) // Assert that the running total is less than 200000
-        }).then(() => {
-            // Assert that the final total sum is less than 200000 after the loop completes
+        cartPage.sumOfProducts().then(function(sum){
             expect(sum).to.be.lessThan(200000)
         })
 
+        const ConfirmationPage = cartPage.checkOutItems()
+        ConfirmationPage.submitFormDetails()
+        ConfirmationPage.getAlertMessage().should('contain', 'Success')
+        // Initialize a variable to store the total sum of product prices
+        
+
         // Click the "Checkout" button to proceed to the delivery page
-        cy.contains('button', 'Checkout').click()
+        
 
         // Enter the delivery country
-        cy.get('#country').type("India")
-
-        // Wait for the suggestions dropdown to load
-        Cypress.config('defaultCommandTimeout', 10000)
-
-        // Select the first suggestion from the dropdown
-        cy.get(".suggestions ul li a").click()
-
-        // Click the "Purchase" button to complete the order
-        cy.get(".btn-success").click()
+        
 
         // Verify that the success message is displayed
-        cy.get(".alert-success").should('contain', 'Success')
+        //cy.get(".alert-success").should('contain', 'Success')
     })
 })

@@ -1,4 +1,7 @@
 import ProductPage from './ProductPage';
+import ConfirmationPage from './ConfirmationPage';
+import CartPage from './CartPage';
+
 class HomePage{
 
     goTo(url){

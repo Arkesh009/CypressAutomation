@@ -23,3 +23,15 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('submitFormDetails', ()=>{
+        cy.get('#country').type("India")
+
+        // Wait for the suggestions dropdown to load
+        Cypress.config('defaultCommandTimeout', 10000)
+
+        // Select the first suggestion from the dropdown
+        cy.get(".suggestions ul li a").click()
+
+        // Click the "Purchase" button to complete the order
+        cy.get(".btn-success").click()
+})

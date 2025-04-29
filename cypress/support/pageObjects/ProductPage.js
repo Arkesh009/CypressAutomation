@@ -7,7 +7,7 @@ class ProductPage{
     }
 
     verifyCardLimit(){
-        cy.get('app-card').should('have.length', 4)
+        return cy.get('app-card').should('have.length', 4)
     }
 
     selectFirstProduct(){
