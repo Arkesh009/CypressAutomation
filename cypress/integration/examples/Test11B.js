@@ -19,7 +19,7 @@ describe('E2E Ecommerce Test', () => {
         const productName = this.data.productName
 
         // Visit the login page
-        this.homepage.goTo("https://rahulshettyacademy.com/loginpagePractise/#")
+        this.homepage.goTo(Cypress.env('url')+"/loginpagePractise/#")
 
         // Enter the username and password
         const productPage = this.homepage.login(this.data.username, this.data.password)
