@@ -28,7 +28,7 @@ describe('E2E Ecommerce Test', () => {
         productPage.pageValidation()
 
         // Pause the test for debugging purposes
-        cy.pause();
+        
 
         // Verify that there are exactly 4 product cards displayed
         productPage.verifyCardLimit().should('have.length', 4)
