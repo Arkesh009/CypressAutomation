@@ -10,16 +10,23 @@
     "recordDashboardTest": "npx cypress run --record --key 442e3a59-7fa8-420f-ae1a-9472a14964e9",
     "GreenkartTest": "npx cypress run --spec \"cypress/integration/GreenKart/*\" "
   },
+  "cypress-cucumber-preprocessor": {
+    "json": {
+      "enabled": true,
+      "output": "cypress/cucumberReports/results.json"
+    }
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^22.0.1",
     "@cypress/browserify-preprocessor": "^3.0.2",
     "cypress": "^14.3.0",
     "cypress-iframe": "^1.0.1",
-    "cypress-mochawesome-reporter": "^3.8.2"
+    "cypress-mochawesome-reporter": "^3.8.2",
+    "multiple-cucumber-html-reporter": "^3.9.2"
   },
   "dependencies": {
-    "@badeball/cypress-cucumber-preprocessor": "^22.0.1",
     "@cypress/browserify-preprocessor": "latest"
   }
 }
