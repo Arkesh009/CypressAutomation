@@ -35,3 +35,14 @@ Cypress.Commands.add('submitFormDetails', ()=>{
         // Click the "Purchase" button to complete the order
         cy.get(".btn-success").click()
 })
+
+// custom command to 
+Cypress.Commands.add("Login API", ()=>{
+        cy.request("POST", "https://rahulshettyacademy.com/api/ecom/auth/login", {
+                "userEmail": "arkeshbhargava@gmail.com",
+                "userPassword": "Arkesh@1999"
+              }).then(function(response){
+                expect(response.status).to.eq(200);
+                Cypress.env('token', response.body.token);
+              })
+})
