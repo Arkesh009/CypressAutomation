@@ -37,7 +37,7 @@ Cypress.Commands.add('submitFormDetails', ()=>{
 })
 
 // custom command to 
-Cypress.Commands.add("Login API", ()=>{
+Cypress.Commands.add("LoginAPI", ()=>{
         cy.request("POST", "https://rahulshettyacademy.com/api/ecom/auth/login", {
                 "userEmail": "arkeshbhargava@gmail.com",
                 "userPassword": "Arkesh@1999"
