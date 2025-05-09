@@ -2,7 +2,7 @@
 const neatCSV = require('neat-csv'); // Importing the neat-csv library to parse CSV files
 let productName; // Variable to store the product name for later validation
 
-describe('Session test suite', () => {
+describe('JWT Session test suite', () => {
     it('is logged in through local storage', async () => {
         // Custom command to log in via API and set the token in local storage
         cy.LoginAPI().then(function(){
