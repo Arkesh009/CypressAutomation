@@ -25,7 +25,8 @@ describe('JWT Session test suite', () => {
 
         // Navigating to the cart page
         cy.get("[routerlink*='cart']").click()
-        cy.wait(2000)
+        cy.wait(2000) // Adding a wait to ensure the cart page loads completely
+
         // Proceeding to the checkout page
         cy.contains("Checkout").click()
 
@@ -43,12 +44,19 @@ describe('JWT Session test suite', () => {
         cy.get(".action__submit").click()
 
         // Clicking on the "Download Invoice" button
-        cy.get(".order-summary button").contains("Excel").click()
+        cy.get(".order-summary button").contains("Excel").click() // Triggering the download of the invoice in Excel format
         
-        const filePath = Cypress.config("fileServerFolder")+"/cypress/downloads/order-invoice_arkeshbhargava.xlsx"
+        const filePath = Cypress.config("fileServerFolder")+"/cypress/downloads/order-invoice_arkeshbhargava.xlsx" // Path to the downloaded Excel file
+
+        // Using a custom Cypress task to convert the Excel file to JSON
         cy.task('excelToJsonConverter', filePath).then((result) => {
-            cy.log(result.data[1].A)
-            expect(productName).to.equal(result.data[1].B)
+            cy.log(result.data[1].A) // Logging the value from column A of the second row for debugging
+            expect(productName).to.equal(result.data[1].B) // Validating that the product name matches the value in column B of the second row
+        })
+
+        // Reading the downloaded file directly to ensure it contains the product name
+        cy.readFile(filePath).then(function(text){
+            expect(text).to.include(productName); // Validating that the file content includes the product name
         })
         
     })
