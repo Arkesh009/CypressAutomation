@@ -28,6 +28,7 @@
     "neat-csv": "5.1.0"
   },
   "dependencies": {
-    "@cypress/browserify-preprocessor": "latest"
+    "@cypress/browserify-preprocessor": "latest",
+    "convert-excel-to-json": "^1.7.0"
   }
 }
