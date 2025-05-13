@@ -5,6 +5,7 @@ const {preprendTransformerToOptions,} = require("@badeball/cypress-cucumber-prep
 const excelToJson = require('convert-excel-to-json');
 const fs = require('fs');
 const ExcelJs = require("exceljs");
+const { error } = require("console");
 
 async function setupNodeEvents(on, config) {
   await addCucumberPreprocessorPlugin(on, config);
@@ -35,7 +36,11 @@ async function setupNodeEvents(on, config) {
 
       const cell = worksheet.getCell(output.row, output.column + change.colChange);
       cell.value = replaceText;
-      await workbook.xlsx.writeFile(filePath)
+      return workbook.xlsx.writeFile(filePath).then(() => {
+          return true;
+      }).catch((error) => {
+          return false;
+      })
     }
   })
 
@@ -43,9 +48,7 @@ async function setupNodeEvents(on, config) {
   return config;
 }
 
-async function setupNodeEvents(on, config) {
-
-  async function readExcelTest(worksheet, searchText) {
+async function readExcelTest(worksheet, searchText) {
     let output = { row: -1, column: -1 };
     worksheet.eachRow((row, rownumber) => {
       row.eachCell((cell, colNumber) => {
@@ -58,8 +61,7 @@ async function setupNodeEvents(on, config) {
     return output;
   }
 
-}
-
+  
 module.exports = defineConfig({
   defaultCommandTimeout: 6000,
 
