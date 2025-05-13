@@ -21,3 +21,6 @@ console.log(typeof(e));
 // we can redeclare a variable with var but not possible with let
 var e = 10;
 console.log(typeof(e));
+
+const Pi = 3.141
+console.log(typeof(Pi));
