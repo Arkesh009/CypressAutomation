@@ -25,11 +25,30 @@ console.log(marks); // Output: [20, 40, 35, 12, 37, 100]
 marks.unshift(14); // Adds 14 to the beginning of the array
 console.log(marks); // Output: [14, 20, 40, 35, 12, 37, 100]
 
-// Summing the array elements
+// Summing the array elements using a for...of loop
 let sum = 0;
 for (let i of marks) {
-    sum += i; // sum + index value 
+    sum += i; // Add each element to sum
 }
+console.log("Sum = ", sum); // Output the total sum
 
-console.log("Sum = ", sum); // output sum
+// Summing the array elements using the reduce function (more concise)
+let total = marks.reduce((sum, marks) => sum + marks, 0); // sum is accumulator, marks is current value
+console.log("Reduce function total = ", total); 
 
+// Creating a new array with only even numbers from scores
+let scores = [12,13,14,16];
+// Array to store even scores
+let evenScores = []
+
+// Loop through scores and push even numbers to evenScores
+for(let i=0; i<scores.length; i++){
+    if(scores[i]%2 == 0){
+        evenScores.push(scores[i]);
+    }
+}
+console.log("Even Scores = ", evenScores);
+
+// Using the filter method to get even numbers (more concise)
+let newFilterEvenScores = scores.filter(score => score%2 == 0); // Returns a new array with only even numbers
+console.log("New Filter Even Score = ", newFilterEvenScores);
