@@ -25,4 +25,11 @@ console.log(marks); // Output: [20, 40, 35, 12, 37, 100]
 marks.unshift(14); // Adds 14 to the beginning of the array
 console.log(marks); // Output: [14, 20, 40, 35, 12, 37, 100]
 
+// Summing the array elements
+let sum = 0;
+for (let i of marks) {
+    sum += i; // sum + index value 
+}
+
+console.log("Sum = ", sum); // output sum
 
