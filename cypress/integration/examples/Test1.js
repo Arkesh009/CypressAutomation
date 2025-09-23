@@ -1,5 +1,5 @@
 // cypress spec1
-/// <refrence types="Cypress" />
+/// <reference types="cypress" />
 
 describe('My first Test Suite', function () {
     it('My firstTest case', function () {
@@ -34,9 +34,6 @@ describe('My first Test Suite', function () {
         });
 
     });
-
-    // it('My secondtest case', function(){
-    //     // test step
-    // });
+    
 }
 );

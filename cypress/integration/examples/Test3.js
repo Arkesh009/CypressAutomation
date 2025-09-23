@@ -17,7 +17,7 @@ describe('My 3rd test suite', function () {
         cy.get('#autocomplete').type('ind')
         cy.get('.ui-menu-item div').each(($e1, index, $list) => {
             if($e1.text() === "India"){
-                $e1.click()
+                $e1.click();
             }
         })
         cy.get('#autocomplete').should('have.value', 'India')
