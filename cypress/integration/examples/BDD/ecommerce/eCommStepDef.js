@@ -1,6 +1,9 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import HomePage from "../../../../support/pageObjects/HomePage";
-const homePage = new HomePage()
+// import loginPage from "../../../../support/pageObjects/LoginPage";
+
+const homePage = new HomePage();
+// const loginpage = new loginPage();
 
 Given('I am on Ecommerce page', ()=>{
     homePage.goTo(Cypress.env('url')+"/loginpagePractise/")

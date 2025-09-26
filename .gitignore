@@ -6,3 +6,5 @@ cypress/screenshots/
 cypress/reports/
 cypress/cucumberReports
 cypress/downloads
+REVISION_SHEET.md
+cypress/support/pageObjects/LoginPage.js

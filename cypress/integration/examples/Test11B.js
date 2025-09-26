@@ -1,5 +1,6 @@
 /// <reference types="cypress"/>
 import HomePage from '../../support/pageObjects/HomePage'
+// import loginPage from '../../support/pageObjects/LoginPage'
 
 // Test suite for E2E testing of an e-commerce application
 describe('E2E Ecommerce Test', () => {
@@ -10,6 +11,7 @@ describe('E2E Ecommerce Test', () => {
         cy.fixture('example').then(function (data) {
             this.data = data // Store the fixture data in `this.data`
             this.homepage = new HomePage() // Initialize the HomePage object
+            // this.loginpage = new loginPage()
         })
     })
 
